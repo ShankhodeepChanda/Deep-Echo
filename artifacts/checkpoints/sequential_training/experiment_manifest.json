@@ -1,0 +1,117 @@
+{
+  "experiment_name": "sequential_fine_tuning_seti_multi_dataset",
+  "timestamp": "2026-10-16 07:36:05",
+  "total_execution_time_sec": 340.0266625881195,
+  "epochs_per_stage": 10,
+  "batch_size": 128,
+  "lr": 0.0003,
+  "seed": 42,
+  "replay_ratio": 0.1,
+  "final_recalibrated_threshold": 0.022264648228883743,
+  "historical_threshold": 0.006484,
+  "stage_summaries": [
+    {
+      "stage": 1,
+      "dataset": "G12.72+6.26",
+      "filename": "guppi_58212_57774_010485_G12.72+6.26_0001.0001.fil",
+      "telescope": "Parkes 64m Dish",
+      "band": "L-band",
+      "train_samples": 19600,
+      "val_samples": 4200,
+      "test_samples": 4200,
+      "epochs": 10,
+      "final_train_loss": 0.004513,
+      "val_mean_error": 0.004457182250916958,
+      "stage_threshold": 0.006484405603259802,
+      "elapsed_sec": 390.0,
+      "checkpoint": "stage_1_G12_72+6_26.pt"
+    },
+    {
+      "stage": 2,
+      "dataset": "ProxCen_S",
+      "filename": "guppi_59335_45797_6179325092_ProxCen_S_0001.0002.fil",
+      "telescope": "Parkes / MeerKAT (BL Multibeam)",
+      "band": "S-band",
+      "train_samples": 19600,
+      "val_samples": 4200,
+      "test_samples": 4200,
+      "epochs": 10,
+      "final_train_loss": 0.01061489414492819,
+      "val_mean_error": 0.01121413055807352,
+      "stage_threshold": 0.018140006810426712,
+      "elapsed_sec": 153.20705914497375,
+      "checkpoint": "stage_2_ProxCen_S.pt"
+    },
+    {
+      "stage": 3,
+      "dataset": "HIP26137",
+      "filename": "spliced_blc40414243444546o7o0515253545556o7o061626364656667_guppi_58838_21527_HIP26137_0086.gpuspec.0002.fil",
+      "telescope": "Green Bank Telescope (GBT)",
+      "band": "X-band",
+      "train_samples": 19600,
+      "val_samples": 4200,
+      "test_samples": 4200,
+      "epochs": 10,
+      "final_train_loss": 0.012477801824835214,
+      "val_mean_error": 0.012866790406405926,
+      "stage_threshold": 0.02325216308236122,
+      "elapsed_sec": 156.778315782547,
+      "checkpoint": "stage_3_HIP26137.pt"
+    }
+  ],
+  "retention_matrix": [
+    {
+      "G12.72+6.26": 0.004457182250916958,
+      "ProxCen_S": 0.02492823638021946,
+      "HIP26137": 0.024982212111353874
+    },
+    {
+      "G12.72+6.26": 0.004714152775704861,
+      "ProxCen_S": 0.01121413055807352,
+      "HIP26137": 0.014812269248068333
+    },
+    {
+      "G12.72+6.26": 0.004689074121415615,
+      "ProxCen_S": 0.011603293009102345,
+      "HIP26137": 0.012866790406405926
+    }
+  ],
+  "final_test_evaluation": {
+    "G12.72+6.26": {
+      "dataset_filename": "guppi_58212_57774_010485_G12.72+6.26_0001.0001.fil",
+      "telescope": "Parkes 64m Dish",
+      "band": "L-band",
+      "n_test_tiles": 4200,
+      "test_mean_mse": 0.0047414121218025684,
+      "test_std_mse": 0.0013716482790187001,
+      "test_min_mse": 0.001396395149640739,
+      "test_max_mse": 0.007661192212253809,
+      "flagged_anomalies": 0,
+      "anomaly_rate_pct": 0.0
+    },
+    "ProxCen_S": {
+      "dataset_filename": "guppi_59335_45797_6179325092_ProxCen_S_0001.0002.fil",
+      "telescope": "Parkes / MeerKAT (BL Multibeam)",
+      "band": "S-band",
+      "n_test_tiles": 4200,
+      "test_mean_mse": 0.011462785303592682,
+      "test_std_mse": 0.0033395281061530113,
+      "test_min_mse": 0.0003045219636987895,
+      "test_max_mse": 0.02464280277490616,
+      "flagged_anomalies": 5,
+      "anomaly_rate_pct": 0.11904761904761905
+    },
+    "HIP26137": {
+      "dataset_filename": "spliced_blc40414243444546o7o0515253545556o7o061626364656667_guppi_58838_21527_HIP26137_0086.gpuspec.0002.fil",
+      "telescope": "Green Bank Telescope (GBT)",
+      "band": "X-band",
+      "n_test_tiles": 4200,
+      "test_mean_mse": 0.012762640602886677,
+      "test_std_mse": 0.007882611826062202,
+      "test_min_mse": 0.000608958478551358,
+      "test_max_mse": 0.0261116661131382,
+      "flagged_anomalies": 137,
+      "anomaly_rate_pct": 3.261904761904762
+    }
+  }
+}

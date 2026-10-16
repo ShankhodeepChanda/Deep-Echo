@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Global Reset & Typography */
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #cbd5e1;
+    background-color: #090d16;
+}
+
+/* Hide Streamlit Chrome */
+#MainMenu, header, footer {
+    visibility: hidden;
+    height: 0;
+}
+
+div[data-testid="stDecoration"] {
+    display: none;
+}
+
+div[data-testid="stToolbar"] {
+    display: none;
+}
+
+/* App Canvas & Layout */
+.block-container {
+    padding-top: 1.5rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 1400px;
+}
+
+/* Brand Wordmark Header */
+.de-brand-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.de-brand-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: #f8fafc;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.de-brand-title span {
+    color: #00e5ff;
+}
+
+.de-brand-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.de-brand-status b {
+    color: #00e5ff;
+    font-weight: 600;
+}
+
+/* Instrument Cards */
+.de-card {
+    background-color: #101726;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.de-card-header {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Metric Cards */
+div[data-testid="stMetric"] {
+    background-color: #101726;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+div[data-testid="stMetric"] label[data-testid="stMetricLabel"] {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748b !important;
+}
+
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 1.25rem !important;
+    font-weight: 600;
+    color: #f1f5f9 !important;
+}
+
+/* Tabs Styling */
+div[data-testid="stTabs"] {
+    margin-top: 0.5rem;
+}
+
+div[data-testid="stTabs"] button[role="tab"] {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #64748b;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    transition: all 0.15s ease-in-out;
+}
+
+div[data-testid="stTabs"] button[role="tab"]:hover {
+    color: #cbd5e1;
+}
+
+div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+    color: #00e5ff;
+    border-bottom: 2px solid #00e5ff;
+    background: transparent;
+}
+
+/* Sidebar Styling */
+section[data-testid="stSidebar"] {
+    background-color: #0c111d;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1.25rem !important;
+}
+
+.sidebar-section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: #64748b;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+div.stButton > button {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    background-color: #0d1e2e;
+    color: #00e5ff;
+    padding: 0.5rem 1rem;
+    transition: all 0.15s ease;
+}
+
+div.stButton > button:hover {
+    background-color: #00e5ff;
+    color: #090d16;
+    border-color: #00e5ff;
+    font-weight: 600;
+}
+
+div.stButton > button:active {
+    transform: translateY(1px);
+}
+
+/* Expanders */
+div[data-testid="stExpander"] {
+    background-color: #101726;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+}
+
+/* Dataframe styling */
+div[data-testid="stDataFrame"] {
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    background-color: #101726;
+}
+
+/* Progress bar */
+div[data-testid="stProgress"] > div > div > div > div {
+    background-color: #00e5ff;
+}
+
+/* Inputs & Selects */
+div[data-baseweb="select"] > div,
+input[type="text"], input[type="number"], input[type="password"] {
+    background-color: #090d16 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #f1f5f9 !important;
+    font-size: 0.85rem !important;
+    border-radius: 5px !important;
+}
+
+div[data-baseweb="select"] > div:focus-within,
+input:focus {
+    border-color: #00e5ff !important;
+    box-shadow: 0 0 0 1px #00e5ff !important;
+}
+
+/* Sliders */
+div[data-testid="stSlider"] div[role="slider"] {
+    background-color: #00e5ff !important;
+    border-color: #00e5ff !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}

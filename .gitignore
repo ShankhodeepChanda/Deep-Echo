@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Raw Astronomical Observations (large binary filterbanks > 100 MB)
+data/raw/
+*.fil
+*.h5
+*.fits
+data/bl_cache/
+
+# OS generated
+.DS_Store
+Thumbs.db

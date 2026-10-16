@@ -1,0 +1,13 @@
+{
+  "target": "G12.72+6.26",
+  "telescope": "Parkes 64m Dish",
+  "band": "L-band",
+  "n_test_tiles": 4200,
+  "anomalies_detected": 116,
+  "anomaly_rate_pct": 2.761904761904762,
+  "mean_error": 0.0047414121218025684,
+  "std_error": 0.0013716482790187001,
+  "min_error": 0.001396395149640739,
+  "max_error": 0.007661192212253809,
+  "threshold": 0.006484
+}

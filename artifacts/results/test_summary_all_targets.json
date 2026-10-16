@@ -1,0 +1,41 @@
+{
+  "G12.72+6.26": {
+    "target": "G12.72+6.26",
+    "telescope": "Parkes 64m Dish",
+    "band": "L-band",
+    "n_test_tiles": 4200,
+    "anomalies_detected": 116,
+    "anomaly_rate_pct": 2.761904761904762,
+    "mean_error": 0.0047414121218025684,
+    "std_error": 0.0013716482790187001,
+    "min_error": 0.001396395149640739,
+    "max_error": 0.007661192212253809,
+    "threshold": 0.006484
+  },
+  "ProxCen_S": {
+    "target": "ProxCen_S",
+    "telescope": "Parkes / MeerKAT (BL Multibeam)",
+    "band": "S-band",
+    "n_test_tiles": 4200,
+    "anomalies_detected": 169,
+    "anomaly_rate_pct": 4.023809523809524,
+    "mean_error": 0.011462785303592682,
+    "std_error": 0.0033395281061530113,
+    "min_error": 0.0003045219636987895,
+    "max_error": 0.02464280277490616,
+    "threshold": 0.016391
+  },
+  "HIP26137": {
+    "target": "HIP26137",
+    "telescope": "Green Bank Telescope (GBT)",
+    "band": "X-band",
+    "n_test_tiles": 4200,
+    "anomalies_detected": 137,
+    "anomaly_rate_pct": 3.261904761904762,
+    "mean_error": 0.012762640602886677,
+    "std_error": 0.007882611826062202,
+    "min_error": 0.000608958478551358,
+    "max_error": 0.0261116661131382,
+    "threshold": 0.022265
+  }
+}

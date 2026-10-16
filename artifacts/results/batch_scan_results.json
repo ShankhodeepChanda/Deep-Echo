@@ -1,0 +1,8 @@
+{
+  "total_observations": 100,
+  "total_flagged_anomalies": 10,
+  "anomaly_rate": 0.1,
+  "mean_reconstruction_error": 0.025264517199248077,
+  "max_reconstruction_error": 0.04384206235408783,
+  "threshold": 0.03514581918716431
+}

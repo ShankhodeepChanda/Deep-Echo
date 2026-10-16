@@ -1,0 +1,100 @@
+{
+  "telescope_target": "G12.72+6.26",
+  "num_trials_per_snr": 300,
+  "threshold_adaptive": 0.006484,
+  "threshold_global": 0.022264648228883743,
+  "false_positive_rate_adaptive_pct": 0.0,
+  "false_positive_rate_global_pct": 0.0,
+  "snr_benchmarks": [
+    {
+      "snr_db": -5.0,
+      "recall_adaptive_pct": 2.0,
+      "recall_global_pct": 0.0,
+      "mean_error": 0.004861782304942608,
+      "std_error": 0.0013870811089873314,
+      "detected_adaptive_count": 6,
+      "detected_global_count": 0,
+      "total_count": 300
+    },
+    {
+      "snr_db": 0.0,
+      "recall_adaptive_pct": 9.333333333333334,
+      "recall_global_pct": 0.0,
+      "mean_error": 0.005145922768861055,
+      "std_error": 0.0014448397560045123,
+      "detected_adaptive_count": 28,
+      "detected_global_count": 0,
+      "total_count": 300
+    },
+    {
+      "snr_db": 5.0,
+      "recall_adaptive_pct": 52.33333333333333,
+      "recall_global_pct": 0.0,
+      "mean_error": 0.005999607499688864,
+      "std_error": 0.0016184322303161025,
+      "detected_adaptive_count": 157,
+      "detected_global_count": 0,
+      "total_count": 300
+    },
+    {
+      "snr_db": 10.0,
+      "recall_adaptive_pct": 80.66666666666666,
+      "recall_global_pct": 0.0,
+      "mean_error": 0.00816265121102333,
+      "std_error": 0.0020546461455523968,
+      "detected_adaptive_count": 242,
+      "detected_global_count": 0,
+      "total_count": 300
+    },
+    {
+      "snr_db": 15.0,
+      "recall_adaptive_pct": 98.66666666666667,
+      "recall_global_pct": 0.0,
+      "mean_error": 0.011352953501045704,
+      "std_error": 0.0020514768548309803,
+      "detected_adaptive_count": 296,
+      "detected_global_count": 0,
+      "total_count": 300
+    },
+    {
+      "snr_db": 20.0,
+      "recall_adaptive_pct": 100.0,
+      "recall_global_pct": 0.0,
+      "mean_error": 0.013879000209271908,
+      "std_error": 0.0027884580194950104,
+      "detected_adaptive_count": 300,
+      "detected_global_count": 0,
+      "total_count": 300
+    },
+    {
+      "snr_db": 25.0,
+      "recall_adaptive_pct": 100.0,
+      "recall_global_pct": 1.0,
+      "mean_error": 0.015046956017613411,
+      "std_error": 0.003301663789898157,
+      "detected_adaptive_count": 300,
+      "detected_global_count": 3,
+      "total_count": 300
+    },
+    {
+      "snr_db": 30.0,
+      "recall_adaptive_pct": 100.0,
+      "recall_global_pct": 4.333333333333334,
+      "mean_error": 0.016026534140110016,
+      "std_error": 0.0036303503438830376,
+      "detected_adaptive_count": 300,
+      "detected_global_count": 13,
+      "total_count": 300
+    },
+    {
+      "snr_db": 35.0,
+      "recall_adaptive_pct": 100.0,
+      "recall_global_pct": 11.666666666666666,
+      "mean_error": 0.017119770869612694,
+      "std_error": 0.004230077378451824,
+      "detected_adaptive_count": 300,
+      "detected_global_count": 35,
+      "total_count": 300
+    }
+  ]
+}
