@@ -1,5 +1,11 @@
 # SETI-AI Observatory
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://deep-echo-72qjxkrmphscusgmhgfnla.streamlit.app/)
+
+**Live demo: [deep-echo-72qjxkrmphscusgmhgfnla.streamlit.app](https://deep-echo-72qjxkrmphscusgmhgfnla.streamlit.app/)**
+
+> The hosted demo shows the saved held-out evaluation (scores and rankings) for the three bundled targets. The raw telescope recordings (1.4–1.8 GB each) are not in the repository, so waterfall views need an observation uploaded (up to 200 MB) or the app run locally with the files in `data/raw/`.
+
 **SETI-AI Observatory** is a signal-investigation dashboard for finding, inspecting, comparing and reviewing unusual radio signals. It is built on **DEEP ECHO**, an unsupervised deep learning pipeline for technosignature candidate detection in radio astronomy. It analyzes high-resolution time-frequency dynamic spectra recorded by major radio telescopes (including the Parkes 64m dish and the Green Bank 100m Telescope) using convolutional autoencoders trained to identify spectral anomalies against terrestrial and astronomical background noise.
 
 ---
