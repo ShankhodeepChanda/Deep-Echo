@@ -222,7 +222,7 @@ def generate_spectrogram_2d(
     f, t, Sxx = compute_spectrogram(sig, fs=sample_rate,
                                    nperseg=nperseg, noverlap=noverlap,
                                    window=window, scaling=scaling,
-                                   nfft=nfft, nfft_axis=nfft_axis)
+                                   nfft=nfft)
 
     # Ensure proper shape (freq x time)
     if Sxx.ndim == 1:
@@ -252,23 +252,27 @@ def generate_spectrogram_batch(
     # Find max dimensions
     max_freqs = 0
     max_times = 0
+    max_rows = 0
+    max_cols = 0
     n_signals = len(signals)
 
     for i, (sig, fs) in enumerate(zip(signals, sample_rates)):
-        f, t, Sxx = generate_spectrogram(sig, fs=fs, **kwargs)
+        f, t, Sxx = generate_spectrogram(sig, sample_rate=fs, **kwargs)
         max_freqs = max(max_freqs, f.shape[0])
         max_times = max(max_times, t.shape[0])
+        max_rows = max(max_rows, Sxx.shape[0])
+        max_cols = max(max_cols, Sxx.shape[1])
 
     # Create padded arrays
     padded_f = np.zeros((n_signals, max_freqs), dtype=float)
     padded_t = np.zeros((n_signals, max_times), dtype=float)
-    padded_sxx = np.zeros((n_signals, max_freqs, max_times), dtype=float)
+    padded_sxx = np.zeros((n_signals, max_rows, max_cols), dtype=float)
 
     for i, (sig, fs) in enumerate(zip(signals, sample_rates)):
-        f, t, Sxx = generate_spectrogram(sig, fs=fs, **kwargs)
+        f, t, Sxx = generate_spectrogram(sig, sample_rate=fs, **kwargs)
         padded_f[i, :f.shape[0]] = f
         padded_t[i, :t.shape[0]] = t
-        padded_sxx[i, :f.shape[0], :t.shape[0]] = Sxx
+        padded_sxx[i, :Sxx.shape[0], :Sxx.shape[1]] = Sxx
 
     return padded_f, padded_t, padded_sxx
 
@@ -374,7 +378,7 @@ if __name__ == "__main__":
            0.5 * np.sin(2 * np.pi * 200 * t) +
            0.1 * np.random.randn(len(t)))
 
-    f, t_spec, Sxx = generate_spectrogram(sig, fs=fs, nperseg=128, noverlap=64)
+    f, t_spec, Sxx = generate_spectrogram(sig, sample_rate=fs, nperseg=128, noverlap=64)
 
     print(f"Signal shape: {sig.shape}")
     print(f"Frequency axis: {f.shape[0]} points, {f[0]:.1f}-{f[-1]:.1f} Hz")

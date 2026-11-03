@@ -1,11 +1,16 @@
+# CPU-only PyTorch wheels: much smaller than the default CUDA build, so installs fit
+# hosted environments such as Streamlit Community Cloud.
+--extra-index-url https://download.pytorch.org/whl/cpu
 numpy>=1.24.0
 scipy>=1.10.0
 pandas>=2.0.0
 matplotlib>=3.7.0
 torch>=2.0.0
 scikit-learn>=1.2.0
-streamlit>=1.28.0
+streamlit>=1.52.0  # developed and tested on 1.66 (uses width="stretch", segmented controls, selectable dataframes)
 plotly>=5.14.0
 pytest>=7.0.0
 requests>=2.30.0
 python-dotenv>=1.0.0
+# Optional: reading .h5/.hdf5 observations in the dashboard (the app works without it)
+# h5py>=3.8.0

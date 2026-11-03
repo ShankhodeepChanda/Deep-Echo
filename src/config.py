@@ -3,6 +3,7 @@ Project configuration and constants for AI Search for Unknown Technosignatures
 Using Deep Anomaly Detection.
 """
 
+import os
 from pathlib import Path
 
 # Base paths
@@ -13,6 +14,12 @@ SAMPLES_DATA_DIR = DATA_DIR / "samples"
 
 RAW_DATA_DIR = DATA_DIR / "raw"
 BL_CACHE_DIR = DATA_DIR / "bl_cache"
+# User state lives under data/ by default. Set OBSERVATORY_STATE_DIR to keep it somewhere else
+# (for example a scratch folder when testing) without touching real reviews or uploads.
+_STATE_DIR = Path(os.environ["OBSERVATORY_STATE_DIR"]) if os.environ.get("OBSERVATORY_STATE_DIR") else DATA_DIR
+UPLOADS_DIR = _STATE_DIR / "uploads"      # user-supplied observations (never modified after saving)
+CACHE_DIR = _STATE_DIR / "cache"          # derived overviews and full-observation scans
+REVIEWS_DIR = _STATE_DIR / "reviews"      # candidate review decisions and UI preferences
 
 ARTIFACTS_DIR = BASE_DIR / "artifacts"
 MODELS_DIR = ARTIFACTS_DIR / "models"
@@ -20,7 +27,8 @@ RESULTS_DIR = ARTIFACTS_DIR / "results"
 FIGURES_DIR = ARTIFACTS_DIR / "figures"
 
 # Ensure directories exist
-for d in [SYNTHETIC_DATA_DIR, SAMPLES_DATA_DIR, RAW_DATA_DIR, BL_CACHE_DIR, MODELS_DIR, RESULTS_DIR, FIGURES_DIR]:
+for d in [SYNTHETIC_DATA_DIR, SAMPLES_DATA_DIR, RAW_DATA_DIR, BL_CACHE_DIR, UPLOADS_DIR, CACHE_DIR, REVIEWS_DIR,
+          MODELS_DIR, RESULTS_DIR, FIGURES_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 # Breakthrough Listen Open Data API defaults

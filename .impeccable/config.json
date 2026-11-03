@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "material symbols rounded",
+        "createdAt": "2026-10-23T05:31:41.251Z",
+        "reason": "assistant decided: Streamlit's own icon font, restored in ui/styles.css so [data-testid=stIconMaterial] glyphs render; verified in browser that omitting it shows raw 'keyboard_arrow_right' text. Not a typeface."
+      }
+    ]
+  }
+}

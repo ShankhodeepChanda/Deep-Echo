@@ -1,13 +1,24 @@
 [theme]
 base = "dark"
-primaryColor = "#00e5ff"
-backgroundColor = "#090d16"
-secondaryBackgroundColor = "#111827"
-textColor = "#e2e8f0"
-font = "sans serif"
+primaryColor = "#35b8a8"
+backgroundColor = "#0b1824"
+secondaryBackgroundColor = "#15181b"
+textColor = "#d9dee2"
+borderColor = "#2a3035"
+dataframeBorderColor = "#2a3035"
+font = "sans-serif"
+baseRadius = "4px"
+buttonRadius = "4px"
+showWidgetBorder = true
 
 [server]
 headless = true
+# Kept at 200 MB so uploads fit hosted memory limits. Larger observations can be
+# opened in place from disk when running locally (sidebar > Add observation).
+maxUploadSize = 200
 
 [browser]
 gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"

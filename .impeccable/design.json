@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "title": "Design System: SETI-AI Observatory",
+  "extensions": {
+    "colorMeta": {
+      "ground": { "role": "neutral", "displayName": "Charcoal Ground", "canonical": "#0f1113", "tonalRamp": ["#0a0b0c", "#0f1113", "#15181b", "#1b1f23", "#23282c", "#2a3035", "#7b868f", "#d9dee2"] },
+      "panel": { "role": "neutral", "displayName": "Panel", "canonical": "#15181b", "tonalRamp": ["#0f1113", "#15181b", "#1b1f23", "#23282c", "#2a3035", "#7b868f", "#9aa4ac", "#d9dee2"] },
+      "teal": { "role": "primary", "displayName": "Signal Teal", "canonical": "#35b8a8", "tonalRamp": ["#07201d", "#12353a", "#1f7a78", "#35b8a8", "#63d3c4", "#6fd3c4", "#b4ebe3", "#eafaf6"] },
+      "teal-bright": { "role": "primary", "displayName": "Signal Teal Bright", "canonical": "#63d3c4", "tonalRamp": ["#12353a", "#1f7a78", "#35b8a8", "#63d3c4", "#8ee0d4", "#b4ebe3", "#d6f5f0", "#eafaf6"] },
+      "amber-mark": { "role": "secondary", "displayName": "Unusual-Signal Amber", "canonical": "#e8a33d", "tonalRamp": ["#3a2a0f", "#5e4316", "#926722", "#c0852f", "#e8a33d", "#f2c177", "#f7d9a8", "#fbeed6"] },
+      "danger": { "role": "tertiary", "displayName": "Alert Coral", "canonical": "#e5675f", "tonalRamp": ["#3a1b19", "#5e2b27", "#933f39", "#c05650", "#e5675f", "#f0a49e", "#f6c8c4", "#fbe6e4"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page title." },
+      "headline": { "displayName": "Headline", "purpose": "Lede summary line, section and detail headings." },
+      "title": { "displayName": "Title", "purpose": "Panel and callout titles, wordmark." },
+      "body": { "displayName": "Body", "purpose": "Prose, controls, tab labels." },
+      "label": { "displayName": "Label", "purpose": "Widget labels, facts, captions, badges." },
+      "measurement": { "displayName": "Measurement", "purpose": "Frequency, time and score values only." }
+    },
+    "shadows": [
+      { "name": "popover", "value": "0 8px 24px rgba(0, 0, 0, 0.45)", "purpose": "The only shadow in the system; popover body." }
+    ],
+    "motion": [
+      { "name": "control-transition", "value": "background-color 0.15s ease, border-color 0.15s ease", "purpose": "Button hover; all motion is disabled under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "narrow-content", "value": "1100px" },
+      { "name": "split-stack", "value": "1320px" },
+      { "name": "grid-collapse", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Default Button",
+      "kind": "button",
+      "refersTo": "button-default",
+      "description": "Standard action on a raised panel fill.",
+      "html": "<button class=\"ds-btn\">Export review</button>",
+      "css": ".ds-btn{background:#1b1f23;color:#d9dee2;border:1px solid #2a3035;border-radius:4px;font:500 0.9375rem 'Atkinson Hyperlegible Next','Segoe UI',sans-serif;padding:0.4rem 0.9rem;min-height:2.35rem;transition:background-color .15s ease,border-color .15s ease}.ds-btn:hover{background:#23282c;border-color:#7b868f;color:#f2f5f7}.ds-btn:focus-visible{outline:2px solid #63d3c4;outline-offset:2px}"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one primary action per view, teal fill with dark text.",
+      "html": "<button class=\"ds-btn-primary\">Review top candidate</button>",
+      "css": ".ds-btn-primary{background:#35b8a8;color:#07201d;border:1px solid #35b8a8;border-radius:4px;font:600 0.9375rem 'Atkinson Hyperlegible Next','Segoe UI',sans-serif;padding:0.4rem 0.9rem;min-height:2.35rem;transition:background-color .15s ease}.ds-btn-primary:hover{background:#63d3c4;border-color:#63d3c4}.ds-btn-primary:focus-visible{outline:2px solid #63d3c4;outline-offset:2px}"
+    },
+    {
+      "name": "Page Tab",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "Underlined segmented tab; active is strong text with a teal underline.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab\">Overview</button><button class=\"ds-tab ds-on\">Candidates</button><button class=\"ds-tab\">Waterfall</button></div>",
+      "css": ".ds-tabs{display:flex;border-bottom:1px solid #2a3035}.ds-tab{background:transparent;border:0;border-bottom:2px solid transparent;color:#9aa4ac;font:500 0.9375rem 'Atkinson Hyperlegible Next',sans-serif;padding:0.55rem 1.05rem;min-height:2.6rem}.ds-tab:hover{color:#f2f5f7;background:#1b1f23}.ds-tab.ds-on{color:#f2f5f7;border-bottom-color:#35b8a8;font-weight:600}.ds-tab:focus-visible{outline:2px solid #63d3c4;outline-offset:2px}"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip-status",
+      "description": "Pill with a state dot: teal ok, hollow ring warn, coral bad.",
+      "html": "<span class=\"ds-chip\"><i></i>Ready</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;gap:0.4rem;padding:0.18rem 0.6rem;border:1px solid #2a3035;border-radius:999px;background:#1b1f23;color:#d9dee2;font:0.8125rem 'Atkinson Hyperlegible Next',sans-serif}.ds-chip i{width:7px;height:7px;border-radius:50%;background:#35b8a8;display:inline-block}"
+    },
+    {
+      "name": "Unusual Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Category badge; the amber variant marks unusual signals.",
+      "html": "<span class=\"ds-badge\">unusual</span>",
+      "css": ".ds-badge{display:inline-block;padding:0.12rem 0.5rem;border-radius:4px;border:1px solid rgba(232,163,61,0.6);background:#1b1f23;color:#f2c177;font:500 0.8125rem 'Atkinson Hyperlegible Next',sans-serif}"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Flat container: panel fill, hairline, 6px radius.",
+      "html": "<div class=\"ds-panel\"><div class=\"ds-pt\">Why flagged</div><p>Narrowband drift not seen in the off-source scans.</p></div>",
+      "css": ".ds-panel{background:#15181b;border:1px solid #2a3035;border-radius:6px;padding:0.9rem 1.1rem;color:#d9dee2;font:0.9375rem/1.55 'Atkinson Hyperlegible Next',sans-serif}.ds-pt{font-weight:600;font-size:1.0625rem;color:#f2f5f7;margin-bottom:0.35rem}"
+    },
+    {
+      "name": "Observation Strip Mark",
+      "kind": "custom",
+      "refersTo": "panel",
+      "description": "Signature: teal-ramp strip with open amber diamond marks at measured coordinates.",
+      "html": "<div class=\"ds-strip\"><svg viewBox=\"0 0 400 80\" width=\"100%\" height=\"80\" role=\"img\" aria-label=\"Observation strip\"><rect width=\"400\" height=\"80\" fill=\"#12353a\"/><rect x=\"0\" y=\"30\" width=\"400\" height=\"14\" fill=\"#1f7a78\" opacity=\"0.6\"/><rect x=\"210\" y=\"36\" width=\"60\" height=\"3\" fill=\"#6fd3c4\"/><path d=\"M120 40 l7 -7 l7 7 l-7 7 z\" fill=\"none\" stroke=\"#e8a33d\" stroke-width=\"2\"/><path d=\"M300 52 l7 -7 l7 7 l-7 7 z\" fill=\"none\" stroke=\"#e8a33d\" stroke-width=\"2\"/></svg></div>",
+      "css": ".ds-strip{background:#15181b;border:1px solid #2a3035;border-radius:6px;padding:0.1rem;overflow:hidden}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Observation Strip",
+    "overview": "The observation is a strip and candidates are marks pinned to it. Every working page is organised around a full-band time-frequency strip with candidate marks at their measured coordinates; the rest of the interface is a quiet charcoal instrument console that exists to read, triage, annotate and export. It is dense and calm: near-black ground, one step lighter panels, hairline borders, no decorative surfaces.\n\nColor is rationed by meaning. One teal carries selection, primary action and signal intensity. Amber is reserved for unusual-signal marks and review flags, so that amber on screen always means \"look here\". A researcher should never be told a high score means extraterrestrial; the surface states what was measured and what is still unknown.",
+    "keyCharacteristics": [
+      "Charcoal neutrals with hairline borders; flat surfaces, no gradients.",
+      "One teal for selection, action and intensity; amber only for unusual marks and flags.",
+      "One humanist sans for all prose and labels; monospace only for measurement values.",
+      "Spectrograms use a single-hue dark-to-teal-to-pale ramp, never a rainbow.",
+      "Small radii (4px controls, 6px containers); one popover shadow, nowhere else."
+    ],
+    "rules": [
+      { "name": "The Amber Means Look Rule", "body": "Amber appears only on unusual-signal marks and review flags. A count, a heading, a button or a decoration is never amber; if every row is amber, nothing is.", "section": "colors" },
+      { "name": "The One Teal Rule", "body": "Teal marks selection, the primary action and signal intensity. It is not a second decorative accent.", "section": "colors" },
+      { "name": "The Mono Is Measurement Rule", "body": "JetBrains Mono appears only on measurement values (frequency, time, score) and inline code. Prose, labels and headings stay in the sans.", "section": "typography" },
+      { "name": "The Flat Surfaces Rule", "body": "Surfaces carry a 1px hairline and a tonal step. No other shadows, no gradients.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the strip at the top of every working page with marks at their measured coordinates.",
+      "Do reserve amber (#e8a33d) for marks and review flags, and tell mark from count by shape: marks are diamonds, counts are plain strong text.",
+      "Do use teal for selection, the primary action and intensity only, with dark text (#07201d) on teal fills.",
+      "Do separate surfaces with a tonal step and a 1px hairline; use 4px and 6px radii.",
+      "Do set measurement values in JetBrains Mono with tabular figures and everything else in Atkinson Hyperlegible Next.",
+      "Do use dashed borders for pending, insufficient and preliminary states, and state what is unknown."
+    ],
+    "donts": [
+      "Don't use a KPI-tile grid or an ML-metrics tab as the front door; model internals stay behind Advanced.",
+      "Don't use rainbow or multi-hue colormaps for spectrograms.",
+      "Don't add shadows beyond the popover, gradients on surfaces, or radii above 6px (except pills).",
+      "Don't imply a high score means extraterrestrial origin or show fabricated numbers.",
+      "Don't make a heading, count, tab or decoration amber."
+    ]
+  }
+}

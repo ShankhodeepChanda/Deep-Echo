@@ -178,7 +178,7 @@ def normalize_spectrogram_array(
     spectrograms: List[np.ndarray],
     method: str = "standard",
     clip_percentile: Optional[float] = None,
-    return_stats: False,
+    return_stats: bool = False,
 ) -> Tuple[List[np.ndarray], dict]:
     """
     Normalize an array of spectrograms using the specified method.
@@ -271,8 +271,9 @@ def normalize_for_autoencoder_input(
                 return (sg - min_) / (max_ - min_)
             return np.zeros_like(sg)
         # Fallback: compute from this spectrogram (training)
-        if sg.max > sg.min:
-            return (sg - sg.min) / (sg.max - sg.min)
+        sg_min, sg_max = sg.min(), sg.max()
+        if sg_max > sg_min:
+            return (sg - sg_min) / (sg_max - sg_min)
         return np.zeros_like(sg)
 
     else:
@@ -313,7 +314,7 @@ if __name__ == "__main__":
     normalized, stats = normalize_spectrogram_array(sg_list, method="standard", return_stats=True)
     print(f"\nStandard normalization stats: mean={stats['mean']:.6f}, std={stats['std']:.6f}")
     for i, ng in enumerate(normalized):
-        print(f"  Normalized {i}: mean={ng.mean():.4f:.4f}, std={ng.std():.4f:.4f}")
+        print(f"  Normalized {i}: mean={ng.mean():.4f}, std={ng.std():.4f}")
 
     # MinMax normalization
     normalized_mm, stats_mm = normalize_spectrogram_array(sg_list, method="minmax", return_stats=True)
@@ -325,8 +326,8 @@ if __name__ == "__main__":
     new_sg = sg_list[0]
     normalized_inf, _ = normalize_spectrogram_array([new_sg], method="standard",
                                                     return_stats=False)
-    print(f"\nInference normalization (first spectrogram): mean={normalized_inf[0].mean():.4f:.4f}, "
-          f"std={normalized_inf[0].std():.4f:.4f}")
+    print(f"\nInference normalization (first spectrogram): mean={normalized_inf[0].mean():.4f}, "
+          f"std={normalized_inf[0].std():.4f}")
 
     # Autoencoder input normalization
     autoencoder_normalized = normalize_for_autoencoder_input(sg_list[0], normalization="minmax")
