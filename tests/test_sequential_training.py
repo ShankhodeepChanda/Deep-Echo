@@ -27,6 +27,17 @@ from src.sequential_trainer import SequentialTrainer
 from src.training import compute_reconstruction_errors, calibrate_threshold
 from src.config import MODELS_DIR, RAW_DATA_DIR, SPEC_HEIGHT, SPEC_WIDTH, LATENT_DIM
 
+RAW_FILES = [
+    RAW_DATA_DIR / "guppi_58212_57774_010485_G12.72+6.26_0001.0001.fil",
+    RAW_DATA_DIR / "guppi_59335_45797_6179325092_ProxCen_S_0001.0002.fil",
+    RAW_DATA_DIR / "spliced_blc40414243444546o7o0515253545556o7o061626364656667_guppi_58838_21527_HIP26137_0086.gpuspec.0002.fil",
+]
+# The raw Breakthrough Listen recordings (1.4-1.8 GB each) are not distributed with the code.
+requires_raw_data = pytest.mark.skipif(
+    not all(f.exists() for f in RAW_FILES),
+    reason="needs the raw Breakthrough Listen .fil observations in data/raw/",
+)
+
 
 def test_1_original_checkpoint_loads():
     """Requirement 1: Verify original checkpoint exists and loads state dict."""
@@ -105,6 +116,7 @@ def test_4_original_checkpoint_remains_unchanged():
     assert hash_before == hash_after, "Original checkpoint was unexpectedly modified!"
 
 
+@requires_raw_data
 def test_5_preprocessing_on_each_additional_dataset():
     """Requirement 5: Test preprocessing & tile extraction on both newly added datasets."""
     f_prox = RAW_DATA_DIR / "guppi_59335_45797_6179325092_ProxCen_S_0001.0002.fil"
@@ -128,6 +140,7 @@ def test_5_preprocessing_on_each_additional_dataset():
     assert 0.0 <= tiles3.min() and tiles3.max() <= 1.0
 
 
+@requires_raw_data
 def test_6_leak_free_data_partitioning():
     """Requirement 6: Verify train, validation, and test sets are strictly disjoint."""
     trainer = SequentialTrainer()
@@ -166,6 +179,7 @@ def test_7_and_8_final_checkpoint_and_threshold_calibration(tmp_path):
     assert loaded["threshold"] == thresh
 
 
+@requires_raw_data
 def test_9_and_10_smoke_test_sequential_trainer(tmp_path):
     """Requirements 9 & 10: Run full mini-pipeline smoke test with small sample limit."""
     trainer = SequentialTrainer(output_dir=tmp_path / "checkpoints", figures_dir=tmp_path / "figures", seed=123)
