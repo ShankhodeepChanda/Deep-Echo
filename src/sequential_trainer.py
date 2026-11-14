@@ -62,7 +62,9 @@ TELESCOPE_NAMES = {
     4: "Parkes 64m Dish",
     6: "Green Bank Telescope (GBT)",
     20: "GUPPI / Breakthrough Listen Backend",
-    4294967295: "Parkes / MeerKAT (BL Multibeam)",
+    # 4294967295 is the "unset" telescope ID. The bundled Proxima Centauri recording
+    # carries it and was recorded at Parkes.
+    4294967295: "Parkes 64m Dish",
 }
 
 

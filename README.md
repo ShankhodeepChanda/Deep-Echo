@@ -45,7 +45,7 @@ DEEP ECHO supports multi-dataset sequential evaluation across diverse astronomic
 | Target | Telescope | Band | Frequency range (from header) | Tiles in the 64×64 grid | Held-out evaluation tiles |
 |---|---|---|---|---|---|
 | **G12.72+6.26** | Parkes 64m Dish | L-band | 1,205.97–1,359.97 MHz | 80,080 | 4,200 (of a 28,000-tile sample) |
-| **ProxCen_S** | Parkes / MeerKAT | S-band (4 IFs) | 2,240.00–2,368.00 MHz | 28,000 | 4,200 |
+| **ProxCen_S** | Parkes 64m Dish | S-band (4 IFs) | 2,240.00–2,368.00 MHz | 28,000 | 4,200 |
 | **HIP 26137** | Green Bank Telescope | X-band | 7,501.46–11,251.46 MHz | 81,920 | 4,200 (of a 28,000-tile sample) |
 
 These values are read from the observation files themselves; the dashboard never hard-codes them.
