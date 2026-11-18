@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "source_name": "G12.72+6.26",
+  "parent_file": "guppi_58212_57774_010485_G12.72+6.26_0001.0001.fil",
+  "parent_n_times": 1025024,
+  "parent_nchans": 352,
+  "parent_nifs": 1,
+  "t_offset": 21504,
+  "f_offset": 0,
+  "n_times": 32768,
+  "nchans": 192,
+  "note": "Region of the original recording, stored as total intensity. Made by scripts/make_demo_excerpts.py.",
+  "heldout_tiles_inside": 89
+}

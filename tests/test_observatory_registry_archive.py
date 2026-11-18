@@ -48,7 +48,7 @@ def test_registered_files_are_discovered_and_missing_ones_are_reported(tmp_path)
     k_id, _ = register_observation(keep, "keep.fil", external=False, uploads_dir=up)
     g_id, _ = register_observation(gone, "gone.fil", external=True, uploads_dir=up)
     gone.unlink()
-    found = {o.obs_id: o for o in discover_observations(raw, up, res)}
+    found = {o.obs_id: o for o in discover_observations(raw, up, res, tmp_path / "no-samples")}
     assert found[k_id].meta is not None and found[k_id].origin == "uploaded"
     assert found[g_id].meta is None and found[g_id].origin == "external" and "no longer" in found[g_id].problems[0]
 

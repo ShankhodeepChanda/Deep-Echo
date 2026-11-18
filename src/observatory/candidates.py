@@ -215,7 +215,10 @@ def candidates_from_heldout(
         )
 
     meta = obs.meta
-    origins_all = heldout_origins(meta.n_times, meta.nchans)
+    ex = obs.excerpt
+    # The stored ids index the held-out partition of the full recording, so an
+    # excerpt recomputes that partition from the original's dimensions.
+    origins_all = heldout_origins(ex.parent_n_times, ex.parent_nchans) if ex else heldout_origins(meta.n_times, meta.nchans)
     n_grid_total = int(np.prod(grid_shape(meta.n_times, meta.nchans)))
     if len(indices) == 0:
         return CandidateSet(AnalysisKind.FAILED, "Stored results contain no tiles.")
@@ -225,6 +228,20 @@ def candidates_from_heldout(
             f"Stored results list tile {int(indices.max())} but this file's held-out partition has {len(origins_all)} tiles.",
         )
     origins = origins_all[indices]
+    if ex is not None:
+        origins = ex.to_local(origins)
+        inside = (
+            (origins[:, 0] >= 0) & (origins[:, 0] + TILE_T <= meta.n_times)
+            & (origins[:, 1] >= 0) & (origins[:, 1] + TILE_F <= meta.nchans)
+        )
+        n_stored = len(origins)
+        origins, scores, indices = origins[inside], scores[inside], indices[inside]
+        if len(origins) == 0:
+            return CandidateSet(AnalysisKind.FAILED, "None of the stored held-out tiles fall inside this excerpt.")
+        warnings.append(
+            f"This is an excerpt of the original recording ({ex.parent_file}). {len(origins):,} of its "
+            f"{n_stored:,} stored held-out tiles fall inside it; the others are not listed."
+        )
 
     provenance = None
     has_coords = True

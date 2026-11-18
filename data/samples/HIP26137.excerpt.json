@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "source_name": "HIP26137",
+  "parent_file": "spliced_blc40414243444546o7o0515253545556o7o061626364656667_guppi_58838_21527_HIP26137_0086.gpuspec.0002.fil",
+  "parent_n_times": 279,
+  "parent_nchans": 1310720,
+  "parent_nifs": 1,
+  "t_offset": 64,
+  "f_offset": 1208960,
+  "n_times": 128,
+  "nchans": 51200,
+  "note": "Region of the original recording, stored as total intensity. Made by scripts/make_demo_excerpts.py.",
+  "heldout_tiles_inside": 89
+}

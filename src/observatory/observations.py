@@ -1,8 +1,9 @@
 """
 Observation catalogue: which observations the dashboard can show.
 
-An observation is a data file (bundled in ``data/raw``, uploaded, or opened in
-place from disk) optionally joined to stored results (``artifacts/results``).
+An observation is a data file (bundled in ``data/raw``, a demo excerpt in
+``data/samples``, uploaded, or opened in place from disk) optionally joined to
+stored results (``artifacts/results``).
 Header metadata is read from the file itself; nothing is hard-coded per target.
 """
 
@@ -18,7 +19,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from src.config import RAW_DATA_DIR, RESULTS_DIR, UPLOADS_DIR
+from src.config import RAW_DATA_DIR, RESULTS_DIR, SAMPLES_DATA_DIR, UPLOADS_DIR
+from src.observatory.excerpts import Excerpt, read_sidecar
 from src.observatory.sources import SUPPORTED_EXTENSIONS, SourceError, SourceMeta, open_source
 
 logger = logging.getLogger(__name__)
@@ -41,10 +43,11 @@ class ResultsInfo:
 class Observation:
     obs_id: str
     label: str
-    origin: str                       # "bundled" | "uploaded" | "external" | "results-only"
+    origin: str                       # "bundled" | "excerpt" | "uploaded" | "external" | "results-only"
     meta: Optional[SourceMeta] = None
     results: Optional[ResultsInfo] = None
     problems: List[str] = field(default_factory=list)
+    excerpt: Optional[Excerpt] = None   # set when the file is a region of a larger recording
 
     @property
     def calibrated_threshold(self) -> Optional[float]:
@@ -166,8 +169,13 @@ def discover_observations(
     raw_dir: Path = RAW_DATA_DIR,
     uploads_dir: Path = UPLOADS_DIR,
     results_dir: Path = RESULTS_DIR,
+    samples_dir: Path = SAMPLES_DATA_DIR,
 ) -> List[Observation]:
-    """Bundled files, registered uploads, then targets that only have stored results."""
+    """Bundled files, demo excerpts, registered uploads, then targets that only have stored results.
+
+    A demo excerpt stands in for a full recording that is not present (as on a
+    hosted deployment); when the full recording is bundled, it wins.
+    """
     results = load_results_index(results_dir)
     observations: List[Observation] = []
     claimed: set = set()
@@ -187,6 +195,28 @@ def discover_observations(
             claimed.add(info.key)
         observations.append(Observation(
             obs_id=_safe_id(meta.source_name), label=meta.source_name, origin="bundled", meta=meta, results=info,
+        ))
+    bundled_names = {o.meta.source_name for o in observations if o.meta is not None}
+
+    for path in sorted(p for p in Path(samples_dir).glob("*.fil")):
+        try:
+            excerpt = read_sidecar(path)
+            if excerpt is None:
+                continue                      # not an excerpt; data/samples may hold other files
+            meta = open_source(path).meta
+        except (SourceError, ValueError) as exc:
+            observations.append(Observation(
+                obs_id=_safe_id(path.stem), label=path.name, origin="excerpt", problems=[f"{path.name}: {exc}"],
+            ))
+            continue
+        if meta.source_name in bundled_names:
+            continue
+        info = results.get(meta.source_name)
+        if info:
+            claimed.add(info.key)
+        observations.append(Observation(
+            obs_id=_safe_id(meta.source_name), label=meta.source_name, origin="excerpt", meta=meta, results=info,
+            excerpt=excerpt,
         ))
 
     for entry in read_registry(uploads_dir):

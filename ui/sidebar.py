@@ -35,6 +35,8 @@ def _option_label(o: Observation) -> str:
         bits.append(o.meta.band)
     elif o.meta is None:
         bits.append("data file missing")
+    if o.excerpt is not None:
+        bits.append("excerpt")
     return "  ·  ".join(bits)
 
 
@@ -68,6 +70,12 @@ def render_sidebar(observations: List[Observation]) -> Ctx:
                     f'<div class="sb-meta"><b>{tele}</b><br>{escape(m.band or "band unknown")} · {escape(fmt_utc(m.start_utc))}</div>',
                     unsafe_allow_html=True,
                 )
+                if obs.excerpt is not None:
+                    st.markdown(
+                        f'<div class="sb-note">Demo excerpt of the full recording: {m.duration_s:,.1f} s, '
+                        f'{m.freq_low_mhz:,.2f}–{m.freq_high_mhz:,.2f} MHz.</div>',
+                        unsafe_allow_html=True,
+                    )
             elif obs.results is not None:
                 st.markdown(
                     f'<div class="sb-meta"><b>{escape(str(obs.results.summary.get("telescope", "telescope unknown")))}</b><br>'

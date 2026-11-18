@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "source_name": "ProxCen_S",
+  "parent_file": "guppi_59335_45797_6179325092_ProxCen_S_0001.0002.fil",
+  "parent_n_times": 1800,
+  "parent_nchans": 64000,
+  "parent_nifs": 4,
+  "t_offset": 768,
+  "f_offset": 12160,
+  "n_times": 1024,
+  "nchans": 6400,
+  "note": "Region of the original recording, stored as total intensity. Made by scripts/make_demo_excerpts.py.",
+  "heldout_tiles_inside": 246
+}

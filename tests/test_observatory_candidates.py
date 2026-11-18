@@ -194,7 +194,7 @@ def test_discovery_joins_files_to_results_and_flags_problems(tmp_path):
     write_fil(raw / "a.fil", noise(128, 64), source="ALPHA")
     (raw / "broken.fil").write_bytes(b"xxxx")
     (res / "test_summary_all_targets.json").write_text(json.dumps({"ALPHA": {"threshold": 0.5}, "GHOST": {"threshold": 0.2}}), encoding="utf-8")
-    found = {o.obs_id: o for o in discover_observations(raw, up, res)}
+    found = {o.obs_id: o for o in discover_observations(raw, up, res, tmp_path / "no-samples")}
     assert found["ALPHA"].results.threshold == 0.5 and found["ALPHA"].meta is not None
     assert found["GHOST"].origin == "results-only" and found["GHOST"].meta is None and found["GHOST"].problems
     assert found["broken"].meta is None and found["broken"].problems

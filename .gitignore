@@ -40,6 +40,8 @@ data/raw/
 *.h5
 *.fits
 data/bl_cache/
+# ...except the small demo excerpts (scripts/make_demo_excerpts.py) used by hosted deployments
+!data/samples/*.fil
 
 # User data and derived caches (SETI-AI Observatory)
 data/uploads/

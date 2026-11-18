@@ -4,7 +4,7 @@
 
 **Live demo: [deep-echo-72qjxkrmphscusgmhgfnla.streamlit.app](https://deep-echo-72qjxkrmphscusgmhgfnla.streamlit.app/)**
 
-> The hosted demo shows the saved held-out evaluation (scores and rankings) for the three bundled targets. The raw telescope recordings (1.4–1.8 GB each) are not in the repository, so waterfall views need an observation uploaded (up to 200 MB) or the app run locally with the files in `data/raw/`.
+> The raw telescope recordings (1.4–1.8 GB each) are too large for the repository, so the hosted demo runs on **excerpts**: a ~25 MB region of each recording in `data/samples/`, chosen to contain its top-ranked candidates (including the #1 and #2 of each target). Waterfalls, candidates and assessments work on those regions; candidates outside them are not listed. Run the app locally with the full files in `data/raw/` to see everything.
 
 **SETI-AI Observatory** is a signal-investigation dashboard for finding, inspecting, comparing and reviewing unusual radio signals. It is built on **DEEP ECHO**, an unsupervised deep learning pipeline for technosignature candidate detection in radio astronomy. It analyzes high-resolution time-frequency dynamic spectra recorded by major radio telescopes (including the Parkes 64m dish and the Green Bank 100m Telescope) using convolutional autoencoders trained to identify spectral anomalies against terrestrial and astronomical background noise.
 
@@ -122,6 +122,7 @@ The stored rankings CSVs (`artifacts/results/test_rankings_*.csv`) cover a held-
 * **Add observation** accepts `.fil` (SIGPROC filterbank) and `.h5`/`.hdf5` (Breakthrough Listen style; needs `pip install h5py`). Files are validated before use; frequency-domain CSV tables are not observations and are refused.
 * *Upload* keeps a copy in `data/uploads/`; *Open from this computer* reads a (large) file in place. Originals are never modified, and files are read through memory maps so multi-gigabyte observations stay memory-friendly.
 * Reviews, uploads and caches live under `data/reviews`, `data/uploads`, `data/cache` (git-ignored). Set `OBSERVATORY_STATE_DIR` to keep them elsewhere.
+* **Demo excerpts** (`data/samples/*.fil` plus a `*.excerpt.json` sidecar each) stand in for recordings that are not in `data/raw/`, as on a hosted deployment. The sidecar records where the excerpt sits in the original, so the stored rankings map onto it, and the usual position check re-scores its top tiles. When the full recording is present it is used instead. Rebuild them with `python scripts/make_demo_excerpts.py` (needs the full files; `--budget-mb` sets the size).
 
 ---
 
@@ -148,6 +149,7 @@ SETI/
 │   ├── observatory/                         # Dashboard data layer (no Streamlit imports)
 │   │   ├── sources.py                       # Validation, memory-mapped reads, overview
 │   │   ├── observations.py  provenance.py   # Catalogue, upload registry, tile positions
+│   │   ├── excerpts.py                      # Demo excerpts of large recordings
 │   │   ├── scoring.py  candidates.py        # Scoring, full scans, sensitivity, filters
 │   │   ├── assessment.py  cadence.py        # Preliminary assessment, ON/OFF adapter
 │   │   ├── reviews.py  export.py  archive.py
