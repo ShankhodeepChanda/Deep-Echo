@@ -33,7 +33,7 @@ def _facts(ctx: Ctx) -> None:
         ])
         return
     facts_grid([
-        ("Telescope", " \u00b7 ".join(x for x in (m.telescope, m.band) if x) or "not in file", "" if (m.telescope or m.band) else "na"),
+        ("Telescope", " \u00b7 ".join(x for x in (m.telescope, ctx.obs.band) if x) or "not in file", "" if (m.telescope or ctx.obs.band) else "na"),
         ("Frequency range", fmt_range(m.freq_low_mhz, m.freq_high_mhz, 2), "num"),
         ("Channel width", fmt_khz(m.foff_mhz), "num"),
         ("Time resolution", fmt_seconds(m.tsamp_s), "num"),

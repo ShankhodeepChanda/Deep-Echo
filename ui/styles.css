@@ -129,6 +129,16 @@ div[data-testid="stButtonGroup"] button[data-variant="segmented_control"][aria-c
     color: var(--text-strong) !important; border-bottom-color: var(--accent) !important; background: transparent !important; font-weight: 600;
 }
 .nav-rule { border-bottom: 1px solid var(--line); margin: -0.9rem 0 1.0rem; }
+/* Phones: the six page tabs wrap onto two rows instead of shrinking to unreadable stubs. */
+@media (max-width: 760px) {
+    [data-testid="stMain"] div[data-testid="stButtonGroup"] [role="radiogroup"] { flex-wrap: wrap !important; row-gap: 0.1rem !important; }
+    [data-testid="stMain"] div[data-testid="stButtonGroup"] button[data-variant="segmented_control"] {
+        flex: 0 0 auto !important; max-width: none !important; overflow: visible !important; padding: 0.4rem 0.7rem !important; min-height: 2.2rem !important;
+    }
+    [data-testid="stMain"] div[data-testid="stButtonGroup"] button[data-variant="segmented_control"] * {
+        overflow: visible !important; text-overflow: clip !important; white-space: nowrap !important; max-width: none !important;
+    }
+}
 
 /* sensitivity and tile-view controls keep a boxed, equal-width look */
 section[data-testid="stSidebar"] div[data-testid="stButtonGroup"] [role="radiogroup"] { gap: 0 !important; width: 100%; }

@@ -127,6 +127,19 @@ def test_discovery_uses_excerpts_only_when_the_full_recording_is_absent(parent, 
 
 
 @pytest.mark.skipif(not list(SAMPLES_DATA_DIR.glob("*.excerpt.json")), reason="demo excerpts not present")
+def test_excerpt_reports_the_band_of_its_full_recording(tmp_path):
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    found = {o.obs_id: o for o in discover_observations(raw_dir=empty, uploads_dir=empty)}
+    hip = found.get("HIP26137")
+    if hip is None or hip.excerpt is None:
+        pytest.skip("HIP26137 excerpt not present")
+    # the excerpt is a slice near 7.6 GHz, but the recording spans 7.5-11.25 GHz (centre in X-band)
+    assert hip.meta.band == "C-band"
+    assert hip.band == "X-band"
+
+
+@pytest.mark.skipif(not list(SAMPLES_DATA_DIR.glob("*.excerpt.json")), reason="demo excerpts not present")
 def test_committed_excerpts_reproduce_stored_scores(tmp_path):
     """The excerpts a hosted deployment ships: positions recovered on them must reproduce the stored scores."""
     from src.observatory import provenance

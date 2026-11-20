@@ -16,7 +16,8 @@ st.set_page_config(
     page_title="SETI-AI Observatory",
     page_icon=str(Path(__file__).parent / "ui" / "assets" / "favicon.png"),
     layout="wide",
-    initial_sidebar_state="expanded",
+    # "auto" opens the sidebar on desktop but keeps it closed on phones, where it would cover the page.
+    initial_sidebar_state="auto",
 )
 
 from src.observatory.observations import discover_observations  # noqa: E402

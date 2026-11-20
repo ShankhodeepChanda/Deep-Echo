@@ -21,7 +21,7 @@ from typing import Dict, List, Optional, Tuple
 
 from src.config import RAW_DATA_DIR, RESULTS_DIR, SAMPLES_DATA_DIR, UPLOADS_DIR
 from src.observatory.excerpts import Excerpt, read_sidecar
-from src.observatory.sources import SUPPORTED_EXTENSIONS, SourceError, SourceMeta, open_source
+from src.observatory.sources import SUPPORTED_EXTENSIONS, SourceError, SourceMeta, band_name, open_source
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +56,17 @@ class Observation:
     @property
     def file_available(self) -> bool:
         return self.meta is not None
+
+    @property
+    def band(self) -> Optional[str]:
+        """Band of the recording. An excerpt reports its full recording's band, not the band of its slice."""
+        m = self.meta
+        if m is None:
+            return None
+        if self.excerpt is not None:
+            parent_fch1 = m.fch1_mhz - self.excerpt.f_offset * m.foff_mhz
+            return band_name(parent_fch1 + (self.excerpt.parent_nchans - 1) * m.foff_mhz / 2) or m.band
+        return m.band
 
 
 def _safe_id(text: str) -> str:

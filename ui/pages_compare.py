@@ -109,7 +109,7 @@ def _metric_rows(ctx: Ctx, side) -> dict:
     return {
         "Observation": obs.label,
         "Telescope": m.telescope or "not identified in file",
-        "Band": m.band or "unknown",
+        "Band": obs.band or "unknown",
         "Frequency": fmt_range(row.f_low_mhz, row.f_high_mhz, 4),
         "Elapsed time": f"{row.t_start_s:,.2f}–{row.t_end_s:,.2f} s",
         "Starts at": start,
@@ -189,7 +189,7 @@ def _observations_tab(ctx: Ctx) -> None:
         rows.append({
             "Observation": o.label,
             "Telescope": (m.telescope if m else None) or (o.results.summary.get("telescope") if o.results else None) or "n/a",
-            "Band": (m.band if m else None) or "n/a",
+            "Band": o.band or "n/a",
             "Frequency range": fmt_range(m.freq_low_mhz, m.freq_high_mhz, 1) if m else "n/a",
             "Duration": fmt_seconds(m.duration_s) if m else "n/a",
             "Analysis": cs.basis or ("not analysed" if cs.kind == AnalysisKind.NOT_ANALYZED else "unavailable"),

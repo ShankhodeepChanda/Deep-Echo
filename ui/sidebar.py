@@ -31,8 +31,8 @@ def _default_obs_id(observations: List[Observation]) -> str:
 
 def _option_label(o: Observation) -> str:
     bits = [o.label]
-    if o.meta is not None and o.meta.band:
-        bits.append(o.meta.band)
+    if o.meta is not None and o.band:
+        bits.append(o.band)
     elif o.meta is None:
         bits.append("data file missing")
     if o.excerpt is not None:
@@ -67,7 +67,7 @@ def render_sidebar(observations: List[Observation]) -> Ctx:
                 m = obs.meta
                 tele = escape(str(m.telescope or (obs.results.summary.get("telescope") if obs.results else None) or "telescope not in file"))
                 st.markdown(
-                    f'<div class="sb-meta"><b>{tele}</b><br>{escape(m.band or "band unknown")} · {escape(fmt_utc(m.start_utc))}</div>',
+                    f'<div class="sb-meta"><b>{tele}</b><br>{escape(obs.band or "band unknown")} · {escape(fmt_utc(m.start_utc))}</div>',
                     unsafe_allow_html=True,
                 )
                 if obs.excerpt is not None:
