@@ -1,4 +1,4 @@
-# SETI-AI Observatory
+# DEEP-ECHO
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://deep-echo-72qjxkrmphscusgmhgfnla.streamlit.app/)
 
